@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:seriedb
+    username: serie-app
+    password: serie-app!
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      waitDurationInOpenState: 10s
+      failureRateThreshold: 50
+      minimumNumberOfCalls: 1
+  instances:
+    episodes:
+      baseConfig: default
